@@ -45,35 +45,3 @@ The number of hosts in Paris peaked around 2016 and has since declined.
 Prices vary significantly across neighborhoods, with the most expensive areas being concentrated in central Paris.
 
 The average price per night shows an upward trend in recent years.
-
-🛠️ Code Walkthrough
-
-1. Data Cleaning and Profiling
-
-The initial step involves loading the dataset, filtering it for Paris listings, and handling missing values.
-
-# Import necessary libraries
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Load the dataset
-listings = pd.read_csv('Data/listings.csv', encoding='ISO-8859-1', parse_dates=['host_since'])
-
-# Filter data for Paris listings
-listings_paris = listings.query("city == 'Paris'")
-
-2. Data Preparation for Visualization
-
-This section creates new DataFrames by grouping data to prepare for visual analysis.
-
-# Create a table showing average prices by neighborhood
-paris_listings_neighbourhood = listings_paris.groupby('neighbourhood').agg({'price':'mean'}).sort_values(by='price', ascending=False)
-
-3. Visualizations
-
-The project includes bar charts and line plots to showcase trends in the data.
-
-# Plot average prices by neighborhood
-paris_listings_neighbourhood.plot.bar(title='Average Price by Neighbourhood in Paris', ylabel='Price')
-plt.show()
